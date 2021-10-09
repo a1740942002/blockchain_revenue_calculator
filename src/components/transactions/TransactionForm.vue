@@ -29,6 +29,7 @@
           <input
             v-model="amount"
             type="number"
+            step="any"
             name="amount"
             id="amount"
             autocomplete="organization"
@@ -56,6 +57,7 @@
           <input
             v-model="boughtPricing"
             type="number"
+            step="any"
             id="boughtPricing"
             autocomplete="organization"
             class="
@@ -135,8 +137,8 @@ export default defineComponent({
       await addTransaction(token, transactionData);
       coin.value = "";
       boughtDatetime.value = "";
-      amount.value = 0;
-      boughtPricing.value = 0;
+      amount.value = "";
+      boughtPricing.value = "";
       isShowTranscationModal.value = false;
     };
 

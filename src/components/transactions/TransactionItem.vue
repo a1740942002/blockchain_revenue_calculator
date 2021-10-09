@@ -30,10 +30,11 @@
       </button>
     </td>
   </tr>
+  <button @click="pricing += 1">+</button>
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, ref, inject } from "vue";
+import { defineComponent, toRefs, ref, inject, computed } from "vue";
 
 export default defineComponent({
   props: {
@@ -48,12 +49,15 @@ export default defineComponent({
     const handleDelete = async () => {
       await deleteTransaction(token, newTransaction.value.id);
     };
+    const pricing = ref(54088);
+    // const gainLoss = computed(()=>)
 
-    newTransaction.value = { ...transaction.value, pricing: 10000 };
+    newTransaction.value = { ...transaction.value, pricing };
 
     return {
       newTransaction,
       handleDelete,
+      pricing,
     };
   },
 });

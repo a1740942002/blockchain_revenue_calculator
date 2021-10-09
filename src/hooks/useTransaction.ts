@@ -32,7 +32,7 @@ export function useTransaction() {
     try {
       const { api } = useApi(token);
       await api.delete(`/transactions/${id}`);
-      transactions.value.filter((transaction) => {
+      transactions.value = transactions.value.filter((transaction) => {
         return transaction.id !== id;
       });
     } catch (error) {
