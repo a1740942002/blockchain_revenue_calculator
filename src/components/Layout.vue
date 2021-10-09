@@ -21,6 +21,7 @@ export default {
         route.name == "Login" ||
         route.name == "Register" ||
         route.name == "Dashboard" ||
+        route.name == "DashboardHome" ||
         route.name == "DashboardTeam"
       )
         return false;

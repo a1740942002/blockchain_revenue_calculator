@@ -4,6 +4,7 @@ import Login from '../views/login.vue';
 import Register from '../views/Register.vue';
 import Posts from '../views/posts/index.vue';
 import Dashboard from '../views/dashboard/index.vue';
+import DashboardHome from '../views/dashboard/home.vue';
 import DashboardTeam from '../views/dashboard/team.vue';
 import NProgress from 'nprogress';
 
@@ -33,6 +34,11 @@ const routes = [
     name: 'Dashboard',
     component: Dashboard,
     children: [
+      {
+        path: 'home',
+        name: 'DashboardHome',
+        component: DashboardHome,
+      },
       {
         path: 'team',
         name: 'DashboardTeam',

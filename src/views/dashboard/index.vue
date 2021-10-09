@@ -288,26 +288,9 @@
           </div>
         </div>
       </div>
-
-      <main class="flex-1 relative overflow-y-auto focus:outline-none">
-        <div class="py-6">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <h1 class="text-2xl font-semibold text-gray-900">
-              Dashboard{{ router }}
-            </h1>
-          </div>
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            <!-- Replace with your content -->
-            <div class="py-4">
-              <div
-                class="border-4 border-dashed border-gray-200 rounded-lg h-96"
-              />
-            </div>
-            <!-- /End replace -->
-          </div>
-        </div>
-      </main>
-      <router-view />
+      <div class="md:mx-auto md:w-11/12 py-4 md:py-8">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
@@ -328,11 +311,7 @@ import {
 } from "@headlessui/vue";
 import {
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
   HomeIcon,
-  InboxIcon,
   MenuAlt2Icon,
   UsersIcon,
   XIcon,
@@ -362,15 +341,16 @@ export default defineComponent({
     const isLogin = inject("isLogin") as ComputedRef<number>;
 
     const navigation = ref([
-      { label: "Dashboard", name: "Dashboard", icon: HomeIcon, current: true },
+      {
+        label: "Dashboard",
+        name: "DashboardHome",
+        icon: HomeIcon,
+        current: true,
+      },
       { label: "Team", name: "DashboardTeam", icon: UsersIcon, current: false },
     ]);
 
-    const userNavigation = ref([
-      { name: "Your Profile", href: "#" },
-      { name: "Settings", href: "#" },
-      { name: "Sign out", href: "#", method: logout },
-    ]);
+    const userNavigation = ref([{ name: "登出", href: "#", method: logout }]);
 
     watchEffect(() => {
       if (!isLogin.value) {
