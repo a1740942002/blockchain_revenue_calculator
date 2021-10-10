@@ -24,14 +24,18 @@ export default defineComponent({
       transactions,
       addTransaction,
       deleteTransaction,
+      fetchCoinData,
+      tickers,
     } = useTransaction();
     const isShowTranscationModal = ref(false);
     provide("transactions", transactions);
     provide("addTransaction", addTransaction);
     provide("deleteTransaction", deleteTransaction);
     provide("isShowTranscationModal", isShowTranscationModal);
+    provide("tickers", tickers);
 
     fetchTransactions();
+    fetchCoinData();
 
     return {
       isShowTranscationModal,

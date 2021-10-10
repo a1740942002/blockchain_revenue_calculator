@@ -74,6 +74,31 @@
           />
         </div>
       </div>
+      <div class="sm:col-span-1">
+        <label for="cost" class="block text-sm font-medium text-gray-700"
+          >成本 (USD)</label
+        >
+        <div class="mt-1">
+          <input
+            v-model="cost"
+            type="number"
+            step="any"
+            id="cost"
+            autocomplete="organization"
+            class="
+              py-3
+              px-4
+              block
+              w-full
+              shadow-sm
+              focus:ring-indigo-500
+              focus:border-indigo-500
+              border-gray-300
+              rounded-md
+            "
+          />
+        </div>
+      </div>
 
       <div class="sm:col-span-2">
         <button
@@ -112,7 +137,8 @@ export default defineComponent({
   setup() {
     const token = inject("token");
     const addTransaction = inject("addTransaction") as Function;
-    const { coin, boughtDatetime, amount, boughtPricing } = useTransaction();
+    const { cost, coin, boughtDatetime, amount, boughtPricing } =
+      useTransaction();
     const isShowTranscationModal: Ref<boolean> = inject(
       "isShowTranscationModal"
     );
@@ -129,6 +155,7 @@ export default defineComponent({
 
     const handleSubmit = async () => {
       const transactionData = {
+        cost: cost.value,
         coin: coin.value,
         boughtDatetime: boughtDatetime.value,
         amount: amount.value,
@@ -139,10 +166,12 @@ export default defineComponent({
       boughtDatetime.value = "";
       amount.value = "";
       boughtPricing.value = "";
+      cost.value = "";
       isShowTranscationModal.value = false;
     };
 
     return {
+      cost,
       coin,
       boughtDatetime,
       amount,

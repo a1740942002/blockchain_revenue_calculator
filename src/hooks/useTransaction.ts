@@ -1,13 +1,25 @@
+import { containsProp } from '@vueuse/core';
 import { ref, Ref } from 'vue';
 import { useApi } from './useApi';
 
 export function useTransaction() {
   const coin = ref('');
   const boughtDatetime = ref('');
+  const cost: Ref<'' | number> = ref('');
   const amount: Ref<'' | number> = ref('');
   const boughtPricing: Ref<'' | number> = ref('');
   const transactions = ref([]);
-  const { api } = useApi();
+  const { api, coinApi, coinApiKey } = useApi();
+  const tickers = ref([]);
+
+  const fetchCoinData = async () => {
+    try {
+      const res = await coinApi.get(`/currencies/ticker?key=${coinApiKey}&ids=BTC,ETH,interval=1d`);
+      tickers.value = res.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  };
 
   const fetchTransactions = async () => {
     try {
@@ -15,7 +27,7 @@ export function useTransaction() {
       transactions.value = res.data;
       return res;
     } catch (error) {
-      return error.response;
+      return Promise.reject(error);
     }
   };
   const addTransaction = async (token, transactionData) => {
@@ -24,7 +36,7 @@ export function useTransaction() {
       const res = await api.post('/transactions', transactionData);
       transactions.value.push(res.data);
     } catch (error) {
-      return error.response;
+      return Promise.reject(error);
     }
   };
   const updateTransaction = async () => {};
@@ -36,17 +48,20 @@ export function useTransaction() {
         return transaction.id !== id;
       });
     } catch (error) {
-      return error.response;
+      return Promise.reject(error);
     }
   };
 
   return {
     transactions,
+    tickers,
+    fetchCoinData,
     fetchTransactions,
     addTransaction,
     updateTransaction,
     deleteTransaction,
     coin,
+    cost,
     boughtDatetime,
     amount,
     boughtPricing,
