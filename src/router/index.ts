@@ -2,10 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/home.vue';
 import Login from '../views/login.vue';
 import Register from '../views/Register.vue';
-import Posts from '../views/posts/index.vue';
 import Dashboard from '../views/dashboard/index.vue';
 import DashboardHome from '../views/dashboard/home.vue';
-import DashboardTeam from '../views/dashboard/team.vue';
 import NProgress from 'nprogress';
 
 const routes = [
@@ -25,24 +23,14 @@ const routes = [
     component: Register,
   },
   {
-    path: '/posts',
-    name: 'Posts',
-    component: Posts,
-  },
-  {
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
     children: [
       {
-        path: 'home',
+        path: '',
         name: 'DashboardHome',
         component: DashboardHome,
-      },
-      {
-        path: 'team',
-        name: 'DashboardTeam',
-        component: DashboardTeam,
       },
     ],
   },

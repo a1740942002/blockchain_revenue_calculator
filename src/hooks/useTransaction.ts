@@ -1,15 +1,17 @@
 import { ref, Ref } from 'vue';
 import { useApi } from './useApi';
 
-export function useTransaction() {
+export function useTransaction(token?) {
   const coin = ref('');
   const boughtDatetime = ref('');
   const cost: Ref<'' | number> = ref('');
   const amount: Ref<'' | number> = ref('');
   const boughtPricing: Ref<'' | number> = ref('');
   const transactions = ref([]);
-  const { api, coinApi, coinApiKey } = useApi();
+  const { api, coinApi, coinApiKey } = useApi(token);
   const tickers = ref([]);
+  const isEdit = ref(false);
+  const isShowTransactionModal = ref(false);
 
   const fetchCoinData = async () => {
     try {
@@ -29,9 +31,8 @@ export function useTransaction() {
       return Promise.reject(error);
     }
   };
-  const addTransaction = async (token, transactionData) => {
+  const addTransaction = async (transactionData) => {
     try {
-      const { api } = useApi(token);
       const res = await api.post('/transactions', transactionData);
       transactions.value.push(res.data);
     } catch (error) {
@@ -52,6 +53,8 @@ export function useTransaction() {
   };
 
   return {
+    isShowTransactionModal,
+    isEdit,
     transactions,
     tickers,
     fetchCoinData,

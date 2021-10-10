@@ -1,10 +1,10 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-  <TransitionRoot as="template" :show="isShowTranscationModal">
+  <TransitionRoot as="template" :show="isShowTransactionModal">
     <Dialog
       as="div"
       class="fixed z-10 inset-0 overflow-y-auto"
-      @close="isShowTranscationModal = false"
+      @close="isShowTransactionModal = false"
     >
       <div
         class="
@@ -70,7 +70,8 @@
               sm:p-6
             "
           >
-            <TransactionForm />
+            <TransactionForm v-if="!isEdit" />
+            <TransactionEditForm v-else />
           </div>
         </TransitionChild>
       </div>
@@ -99,10 +100,12 @@ export default {
     CheckIcon,
   },
   setup() {
-    const isShowTranscationModal = inject("isShowTranscationModal");
+    const isShowTransactionModal = inject("isShowTransactionModal");
+    const isEdit = inject("isEdit");
 
     return {
-      isShowTranscationModal,
+      isShowTransactionModal,
+      isEdit,
     };
   },
 };

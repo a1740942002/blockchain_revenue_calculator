@@ -38,7 +38,9 @@
       {{ newTransaction.boughtDatetime }}
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-      <button class="text-indigo-600 hover:text-indigo-900">修改</button>
+      <button @click="handleEdit" class="text-indigo-600 hover:text-indigo-900">
+        修改
+      </button>
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
       <button @click="handleDelete" class="text-red-600 hover:text-red-900">
@@ -60,6 +62,9 @@ export default defineComponent({
   setup(props) {
     const { transaction } = toRefs(props);
     const newTransaction = ref({});
+    const isShowTransactionModal = inject(
+      "isShowTransactionModal"
+    ) as Ref<boolean>;
     const deleteTransaction = inject("deleteTransaction") as Function;
     const token = inject("token");
     const tickers = inject("tickers") as Ref;
@@ -71,6 +76,14 @@ export default defineComponent({
     const handleDelete = async () => {
       await deleteTransaction(token, newTransaction.value.id);
     };
+
+    const isEdit = inject("isEdit") as Ref<boolean>;
+
+    const handleEdit = () => {
+      isEdit.value = true;
+      isShowTransactionModal.value = true;
+    };
+
     const gainLoss = computed(() =>
       _.round((pricing.value / transaction.value.boughtPricing - 1) * 100, 2)
     );
@@ -93,7 +106,9 @@ export default defineComponent({
 
     return {
       newTransaction,
+      isShowTransactionModal,
       handleDelete,
+      handleEdit,
       pricing,
     };
   },

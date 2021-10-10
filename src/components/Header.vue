@@ -70,7 +70,7 @@
         <div class="space-x-4" v-else>
           <span class="text-indigo-200">你好，{{ user.email }}</span>
           <router-link
-            :to="{ name: 'Dashboard' }"
+            :to="{ name: 'DashboardHome' }"
             class="
               inline-block
               bg-indigo-500
@@ -122,10 +122,7 @@
 import { inject } from "vue";
 import { useAuth } from "@/hooks/useAuth";
 
-const navigation = [
-  { name: "Home", label: "首頁" },
-  { name: "Posts", label: "部落格" },
-];
+const navigation = [{ name: "Home", label: "首頁" }];
 
 export default {
   setup() {
