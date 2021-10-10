@@ -38,7 +38,7 @@ export function useApi(token?) {
     }
   );
 
-  https: return {
+  return {
     api,
     coinApi,
     coinApiKey,

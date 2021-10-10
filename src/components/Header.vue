@@ -131,7 +131,10 @@ import { inject, ref } from "vue";
 import { useAuth } from "@/hooks/useAuth";
 import { MenuIcon } from "@heroicons/vue/outline";
 
-const navigation = [{ name: "Home", label: "首頁" }];
+const navigation = [
+  { name: "Home", label: "首頁" },
+  { name: "About", label: "關於專案" },
+];
 
 export default {
   components: {
