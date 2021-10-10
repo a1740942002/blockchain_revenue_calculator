@@ -3,8 +3,8 @@ import NProgress from 'nprogress';
 
 export function useApi(token?) {
   const api = axios.create({
-    // baseURL: 'https://weblai-strapi.herokuapp.com',
-    baseURL: 'http://localhost:1337',
+    baseURL: 'https://weblai-strapi.herokuapp.com',
+    // baseURL: 'http://localhost:1337',
   });
 
   const coinApiKey = '9b1dea6cbb3b8c49ae6aea79b00213308e020e6f';
