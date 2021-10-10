@@ -2,15 +2,11 @@ import { ref, Ref } from 'vue';
 import { useApi } from './useApi';
 
 export function useTransaction(token?) {
-  const coin = ref('');
-  const boughtDatetime = ref('');
-  const cost: Ref<'' | number> = ref('');
-  const amount: Ref<'' | number> = ref('');
-  const boughtPricing: Ref<'' | number> = ref('');
   const transactions = ref([]);
   const { api, coinApi, coinApiKey } = useApi(token);
   const tickers = ref([]);
   const isEdit = ref(false);
+  const editTransaction = ref({});
   const isShowTransactionModal = ref(false);
 
   const fetchCoinData = async () => {
@@ -39,10 +35,18 @@ export function useTransaction(token?) {
       return Promise.reject(error);
     }
   };
-  const updateTransaction = async () => {};
-  const deleteTransaction = async (token, id) => {
+  const updateTransaction = async (id, transactionData) => {
     try {
-      const { api } = useApi(token);
+      const res = await api.put(`/transactions/${id}`, transactionData);
+      transactions.value = transactions.value.map((transaction) => {
+        return transaction.id == id ? res.data : transaction;
+      });
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  };
+  const deleteTransaction = async (id) => {
+    try {
       await api.delete(`/transactions/${id}`);
       transactions.value = transactions.value.filter((transaction) => {
         return transaction.id !== id;
@@ -55,6 +59,7 @@ export function useTransaction(token?) {
   return {
     isShowTransactionModal,
     isEdit,
+    editTransaction,
     transactions,
     tickers,
     fetchCoinData,
@@ -62,10 +67,5 @@ export function useTransaction(token?) {
     addTransaction,
     updateTransaction,
     deleteTransaction,
-    coin,
-    cost,
-    boughtDatetime,
-    amount,
-    boughtPricing,
   };
 }

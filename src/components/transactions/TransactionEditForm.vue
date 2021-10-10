@@ -131,14 +131,20 @@
 
 <script lang="ts">
 import { ref, defineComponent, provide, inject, Ref } from "vue";
-import { useTransaction } from "../../hooks/useTransaction";
 
 export default defineComponent({
   setup() {
+    const editTransaction = inject("editTransaction") as Ref;
+    const isEdit = inject("isEdit") as Ref;
     const user = inject("user") as Ref;
-    const addTransaction = inject("addTransaction") as Function;
-    const { cost, coin, boughtDatetime, amount, boughtPricing } =
-      useTransaction();
+    const updateTransaction = inject("updateTransaction") as Function;
+    const cost = ref(editTransaction.value.cost);
+    const coin = ref(editTransaction.value.coin);
+    const boughtDatetime = ref(
+      editTransaction.value.boughtDatetime.substring(0, 16)
+    );
+    const amount = ref(editTransaction.value.amount);
+    const boughtPricing = ref(editTransaction.value.boughtPricing);
     const isShowTransactionModal: Ref<boolean> = inject(
       "isShowTransactionModal"
     );
@@ -162,12 +168,8 @@ export default defineComponent({
         boughtPricing: boughtPricing.value,
         belong_to: user.value.id,
       };
-      await addTransaction(transactionData);
-      coin.value = "";
-      boughtDatetime.value = "";
-      amount.value = "";
-      boughtPricing.value = "";
-      cost.value = "";
+      await updateTransaction(editTransaction.value.id, transactionData);
+      isEdit.value = false;
       isShowTransactionModal.value = false;
     };
 

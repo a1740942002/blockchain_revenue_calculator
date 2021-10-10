@@ -307,12 +307,16 @@ export default defineComponent({
       fetchTransactions,
       transactions,
       addTransaction,
+      updateTransaction,
       deleteTransaction,
       fetchCoinData,
+      editTransaction,
       tickers,
     } = useTransaction(token);
     provide("transactions", transactions);
     provide("isEdit", isEdit);
+    provide("editTransaction", editTransaction);
+    provide("updateTransaction", updateTransaction);
     provide("isShowTransactionModal", isShowTransactionModal);
     provide("addTransaction", addTransaction);
     provide("deleteTransaction", deleteTransaction);

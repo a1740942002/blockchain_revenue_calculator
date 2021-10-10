@@ -131,14 +131,16 @@
 
 <script lang="ts">
 import { ref, defineComponent, provide, inject, Ref } from "vue";
-import { useTransaction } from "../../hooks/useTransaction";
 
 export default defineComponent({
   setup() {
     const user = inject("user") as Ref;
     const addTransaction = inject("addTransaction") as Function;
-    const { cost, coin, boughtDatetime, amount, boughtPricing } =
-      useTransaction();
+    const coin = ref("");
+    const boughtDatetime = ref("");
+    const cost: Ref<"" | number> = ref("");
+    const amount: Ref<"" | number> = ref("");
+    const boughtPricing: Ref<"" | number> = ref("");
     const isShowTransactionModal: Ref<boolean> = inject(
       "isShowTransactionModal"
     );

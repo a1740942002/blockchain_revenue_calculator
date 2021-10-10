@@ -66,7 +66,6 @@ export default defineComponent({
       "isShowTransactionModal"
     ) as Ref<boolean>;
     const deleteTransaction = inject("deleteTransaction") as Function;
-    const token = inject("token");
     const tickers = inject("tickers") as Ref;
     const ticker = tickers.value.find(
       (ticker) => transaction.value.coin == ticker.id
@@ -74,12 +73,14 @@ export default defineComponent({
     const pricing = ref(_.round(ticker?.price, 2));
     const dayChanging = ref(_.round(ticker["1d"].price_change_pct * 100, 2));
     const handleDelete = async () => {
-      await deleteTransaction(token, newTransaction.value.id);
+      await deleteTransaction(newTransaction.value.id);
     };
 
     const isEdit = inject("isEdit") as Ref<boolean>;
+    const editTransaction = inject("editTransaction") as Ref;
 
     const handleEdit = () => {
+      editTransaction.value = transaction.value;
       isEdit.value = true;
       isShowTransactionModal.value = true;
     };
