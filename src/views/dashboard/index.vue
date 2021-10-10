@@ -162,21 +162,7 @@
         </button>
         <div class="flex-1 px-4 flex justify-end">
           <div class="ml-4 flex items-center md:ml-6">
-            <button
-              type="button"
-              class="
-                bg-white
-                p-1
-                rounded-full
-                text-gray-400
-                hover:text-gray-500
-                focus:outline-none
-                focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-              "
-            >
-              <span class="sr-only">View notifications</span>
-              <BellIcon class="h-6 w-6" aria-hidden="true" />
-            </button>
+            <h3 class="text-gray-500">{{ user.email }}</h3>
 
             <!-- Profile dropdown -->
             <Menu as="div" class="ml-3 relative">
@@ -194,11 +180,21 @@
                   "
                 >
                   <span class="sr-only">Open user menu</span>
-                  <img
-                    class="h-8 w-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </MenuButton>
               </div>
               <transition
@@ -280,6 +276,7 @@ import {
   HomeIcon,
   MenuAlt2Icon,
   UsersIcon,
+  ChevronDownIcon,
   XIcon,
 } from "@heroicons/vue/outline";
 import { SearchIcon } from "@heroicons/vue/solid";
@@ -294,6 +291,7 @@ export default defineComponent({
     MenuItems,
     TransitionChild,
     TransitionRoot,
+    ChevronDownIcon,
     BellIcon,
     MenuAlt2Icon,
     SearchIcon,
@@ -349,6 +347,7 @@ export default defineComponent({
 
     return {
       logout,
+      user,
       route,
       navigation,
       userNavigation,

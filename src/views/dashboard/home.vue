@@ -1,9 +1,19 @@
 <template>
-  <h1 class="text-center font-semibold text-2xl">交易記錄</h1>
+  <h1 class="text-center font-semibold text-3xl">交易記錄</h1>
   <div class="flex justify-end mb-2">
     <button
       @click="handleAdd"
-      class="bg-indigo-500 px-2 py-1 rounded text-white"
+      class="
+        bg-indigo-500
+        px-3
+        py-2
+        text-xl
+        rounded-md
+        text-white
+        hover:bg-indigo-600
+        transition
+        duration-300
+      "
     >
       新增記錄
     </button>

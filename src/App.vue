@@ -26,6 +26,6 @@ export default defineComponent({
 
 <style>
 #nprogress .bar {
-  background: rgb(214, 214, 255) !important;
+  background: rgb(255, 234, 181) !important;
 }
 </style>
