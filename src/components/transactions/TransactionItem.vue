@@ -61,7 +61,6 @@ export default defineComponent({
   },
   setup(props) {
     const { transaction } = toRefs(props);
-    const newTransaction = ref({});
     const isShowTransactionModal = inject(
       "isShowTransactionModal"
     ) as Ref<boolean>;
@@ -73,7 +72,7 @@ export default defineComponent({
     const pricing = ref(_.round(ticker?.price, 2));
     const dayChanging = ref(_.round(ticker["1d"].price_change_pct * 100, 2));
     const handleDelete = async () => {
-      await deleteTransaction(newTransaction.value.id);
+      await deleteTransaction(newTransaction.id);
     };
 
     const isEdit = inject("isEdit") as Ref<boolean>;
@@ -96,14 +95,16 @@ export default defineComponent({
       transaction.value.boughtDatetime
     ).toLocaleTimeString();
 
-    newTransaction.value = {
-      ...transaction.value,
-      boughtDatetime: date + " " + time,
-      pricing,
-      gainLoss,
-      dayChanging,
-      boughtPricing: _.round(transaction.value.boughtPricing, 2),
-    };
+    const newTransaction = computed(() => {
+      return {
+        ...transaction.value,
+        boughtDatetime: date + " " + time,
+        pricing,
+        gainLoss,
+        dayChanging,
+        boughtPricing: _.round(transaction.value.boughtPricing, 2),
+      };
+    });
 
     return {
       newTransaction,
@@ -111,6 +112,7 @@ export default defineComponent({
       handleDelete,
       handleEdit,
       pricing,
+      transaction,
     };
   },
 });
