@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="text-2xl font-semibold text-center mb-6">新增紀錄</h3>
+    <h3 class="text-2xl font-semibold text-center mb-6">新增記錄</h3>
     <form
       @submit.prevent="handleSubmit"
       class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"

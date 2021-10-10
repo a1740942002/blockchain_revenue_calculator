@@ -17,6 +17,8 @@ import {
   NNotificationProvider,
   NDataTable,
   NDatePicker,
+  NSkeleton,
+  NSpace,
 } from 'naive-ui';
 const naive = create({
   components: [
@@ -31,6 +33,8 @@ const naive = create({
     NNotificationProvider,
     NDataTable,
     NDatePicker,
+    NSkeleton,
+    NSpace,
   ],
 });
 createApp(App).use(store).use(router).use(naive).mount('#app');

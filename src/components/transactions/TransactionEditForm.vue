@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="text-2xl font-semibold text-center mb-6">修改紀錄</h3>
+    <h3 class="text-2xl font-semibold text-center mb-6">修改記錄</h3>
     <form
       @submit.prevent="handleSubmit"
       class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
@@ -143,6 +143,7 @@ export default defineComponent({
     const boughtDatetime = ref(
       editTransaction.value.boughtDatetime.substring(0, 16)
     );
+
     const amount = ref(editTransaction.value.amount);
     const boughtPricing = ref(editTransaction.value.boughtPricing);
     const isShowTransactionModal: Ref<boolean> = inject(

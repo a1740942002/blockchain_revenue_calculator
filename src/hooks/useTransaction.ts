@@ -8,6 +8,7 @@ export function useTransaction(token?) {
   const isEdit = ref(false);
   const editTransaction = ref({});
   const isShowTransactionModal = ref(false);
+  const isLoadingTransactions = ref(false);
 
   const fetchCoinData = async () => {
     try {
@@ -20,7 +21,9 @@ export function useTransaction(token?) {
 
   const fetchTransactions = async (id) => {
     try {
+      isLoadingTransactions.value = true;
       const res = await api.get(`/transactions?belong_to.id=${id}&_sort=boughtDatetime:DESC`);
+      isLoadingTransactions.value = false;
       transactions.value = res.data;
       return res;
     } catch (error) {
@@ -52,12 +55,14 @@ export function useTransaction(token?) {
         return transaction.id !== id;
       });
     } catch (error) {
+      console.log(error);
       return Promise.reject(error);
     }
   };
 
   return {
     isShowTransactionModal,
+    isLoadingTransactions,
     isEdit,
     editTransaction,
     transactions,

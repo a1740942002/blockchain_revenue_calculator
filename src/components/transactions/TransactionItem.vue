@@ -66,13 +66,16 @@ export default defineComponent({
     ) as Ref<boolean>;
     const deleteTransaction = inject("deleteTransaction") as Function;
     const tickers = inject("tickers") as Ref;
-    const ticker = tickers.value.find(
-      (ticker) => transaction.value.coin == ticker.id
+    const ticker = ref(
+      tickers.value.find((ticker) => transaction.value.coin == ticker.id)
     );
-    const pricing = ref(_.round(ticker?.price, 2));
-    const dayChanging = ref(_.round(ticker["1d"].price_change_pct * 100, 2));
+    const pricing = ref(_.round(ticker.value?.price, 2));
+    const dayChanging = ref(
+      _.round(ticker.value?.["1d"].price_change_pct * 100, 2)
+    );
+
     const handleDelete = async () => {
-      await deleteTransaction(newTransaction.id);
+      await deleteTransaction(newTransaction.value.id);
     };
 
     const isEdit = inject("isEdit") as Ref<boolean>;
@@ -91,17 +94,18 @@ export default defineComponent({
     const date = new Date(
       transaction.value.boughtDatetime
     ).toLocaleDateString();
-    const time = new Date(
-      transaction.value.boughtDatetime
-    ).toLocaleTimeString();
+    const time = new Date(transaction.value.boughtDatetime).toLocaleTimeString(
+      [],
+      { hour: "2-digit", minute: "2-digit" }
+    );
 
     const newTransaction = computed(() => {
       return {
         ...transaction.value,
         boughtDatetime: date + " " + time,
-        pricing,
-        gainLoss,
-        dayChanging,
+        pricing: pricing.value,
+        gainLoss: gainLoss.value,
+        dayChanging: dayChanging.value,
         boughtPricing: _.round(transaction.value.boughtPricing, 2),
       };
     });

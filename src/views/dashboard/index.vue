@@ -303,6 +303,7 @@ export default defineComponent({
     const token = inject("token") as Ref;
     const {
       isEdit,
+      isLoadingTransactions,
       isShowTransactionModal,
       fetchTransactions,
       transactions,
@@ -314,6 +315,7 @@ export default defineComponent({
       tickers,
     } = useTransaction(token);
     provide("transactions", transactions);
+    provide("isLoadingTransactions", isLoadingTransactions);
     provide("isEdit", isEdit);
     provide("editTransaction", editTransaction);
     provide("updateTransaction", updateTransaction);
@@ -331,7 +333,7 @@ export default defineComponent({
     const isLogin = inject("isLogin") as ComputedRef<number>;
     const navigation = ref([
       {
-        label: "交易紀錄",
+        label: "交易記錄",
         name: "DashboardHome",
         icon: HomeIcon,
         current: true,
