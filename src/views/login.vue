@@ -1,5 +1,15 @@
 <template>
-  <div class="bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div
+    class="
+      h-screen
+      bg-gray-50
+      flex flex-col
+      justify-center
+      py-12
+      sm:px-6
+      lg:px-8
+    "
+  >
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
       <img
         class="mx-auto h-12 w-auto"
@@ -13,7 +23,7 @@
         沒有帳號嗎？前往
         {{ " " }}
         <router-link
-          :to="{ name: 'Register' }"
+          :to="{ name: 'SignUp' }"
           class="font-medium text-indigo-600 hover:text-indigo-500"
         >
           註冊
@@ -159,7 +169,7 @@ export default defineComponent({
 
     watchEffect(() => {
       if (isLogin.value) {
-        router.push({ name: "Home" });
+        router.push({ name: "DashboardHome" });
       }
     });
 

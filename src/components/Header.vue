@@ -15,7 +15,6 @@
       >
         <div class="flex items-center">
           <router-link :to="{ name: 'Home' }">
-            <span class="sr-only">Workflow</span>
             <img
               class="h-10 w-auto"
               src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white"
@@ -68,7 +67,9 @@
           >
         </div>
         <div class="space-x-4" v-else>
-          <span class="text-indigo-200">你好，{{ user.email }}</span>
+          <span class="hidden md:inline-block text-indigo-200"
+            >你好，{{ user.email }}</span
+          >
           <router-link
             :to="{ name: 'DashboardHome' }"
             class="
@@ -103,15 +104,22 @@
             登出
           </button>
         </div>
+        <MenuIcon
+          @click="isMenuOpen = !isMenuOpen"
+          class="text-white h-6 w-6 md:hidden"
+        />
       </div>
-      <div class="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
+      <div
+        v-if="isMenuOpen"
+        class="py-4 flex flex-wrap justify-center space-x-6 lg:hidden"
+      >
         <a
           v-for="link in navigation"
           :key="link.name"
           :to="link.name"
           class="text-base font-medium text-white hover:text-indigo-50"
         >
-          {{ link.name }}
+          {{ link.label }}
         </a>
       </div>
     </nav>
@@ -119,18 +127,24 @@
 </template>
 
 <script>
-import { inject } from "vue";
+import { inject, ref } from "vue";
 import { useAuth } from "@/hooks/useAuth";
+import { MenuIcon } from "@heroicons/vue/outline";
 
 const navigation = [{ name: "Home", label: "首頁" }];
 
 export default {
+  components: {
+    MenuIcon,
+  },
   setup() {
     const { logout } = useAuth();
     const user = inject("user");
     const isLogin = inject("isLogin");
+    const isMenuOpen = ref(false);
 
     return {
+      isMenuOpen,
       user,
       navigation,
       logout,

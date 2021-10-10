@@ -79,7 +79,7 @@
                 <router-link
                   v-for="item in navigation"
                   :key="item.name"
-                  :to="item.to"
+                  :to="{ name: item.name }"
                   :class="[
                     item.current
                       ? 'bg-indigo-800 text-white'
@@ -92,7 +92,7 @@
                     class="mr-4 flex-shrink-0 h-6 w-6 text-indigo-300"
                     aria-hidden="true"
                   />
-                  {{ item.name }}
+                  {{ item.label }}
                 </router-link>
               </nav>
             </div>
@@ -275,7 +275,6 @@ import {
   BellIcon,
   HomeIcon,
   MenuAlt2Icon,
-  UsersIcon,
   ChevronDownIcon,
   XIcon,
 } from "@heroicons/vue/outline";

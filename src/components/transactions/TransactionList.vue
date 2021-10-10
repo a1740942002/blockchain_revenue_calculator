@@ -143,7 +143,7 @@
           class="text-lg text-gray-500 text-center py-4"
           v-if="transactions.length == 0"
         >
-          目前沒有資料
+          目前沒有交易記錄
         </h4>
       </div>
     </div>
