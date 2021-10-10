@@ -136,7 +136,7 @@ import { useTransaction } from "../../hooks/useTransaction";
 export default defineComponent({
   setup() {
     const token = inject("token");
-    const user = inject("user");
+    const user = inject("user") as Ref;
     const addTransaction = inject("addTransaction") as Function;
     const { cost, coin, boughtDatetime, amount, boughtPricing } =
       useTransaction();

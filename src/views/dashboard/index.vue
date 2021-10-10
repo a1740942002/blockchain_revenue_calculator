@@ -298,7 +298,16 @@
 <script lang="ts">
 import { useAuth } from "../../hooks/useAuth";
 import { useRoute, useRouter } from "vue-router";
-import { defineComponent, ref, watchEffect, inject, ComputedRef } from "vue";
+import { useTransaction } from "../../hooks/useTransaction";
+import {
+  provide,
+  defineComponent,
+  ref,
+  Ref,
+  watchEffect,
+  inject,
+  ComputedRef,
+} from "vue";
 import {
   Dialog,
   DialogOverlay,
@@ -334,12 +343,26 @@ export default defineComponent({
     XIcon,
   },
   setup() {
+    const {
+      fetchTransactions,
+      transactions,
+      addTransaction,
+      deleteTransaction,
+      fetchCoinData,
+      tickers,
+    } = useTransaction();
+    provide("transactions", transactions);
+    provide("addTransaction", addTransaction);
+    provide("deleteTransaction", deleteTransaction);
+    provide("tickers", tickers);
+    const user = inject("user") as Ref;
+    fetchTransactions(user.value.id);
+    fetchCoinData();
     const sidebarOpen = ref(false);
     const route = useRoute();
     const router = useRouter();
     const { logout } = useAuth();
     const isLogin = inject("isLogin") as ComputedRef<number>;
-
     const navigation = ref([
       {
         label: "Dashboard",
@@ -349,7 +372,6 @@ export default defineComponent({
       },
       { label: "Team", name: "DashboardTeam", icon: UsersIcon, current: false },
     ]);
-
     const userNavigation = ref([{ name: "登出", href: "#", method: logout }]);
 
     watchEffect(() => {

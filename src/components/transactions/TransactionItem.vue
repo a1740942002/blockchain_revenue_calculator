@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, ref, inject, computed } from "vue";
+import { defineComponent, toRefs, ref, inject, computed, Ref } from "vue";
 import _ from "lodash";
 
 export default defineComponent({
@@ -62,7 +62,7 @@ export default defineComponent({
     const newTransaction = ref({});
     const deleteTransaction = inject("deleteTransaction") as Function;
     const token = inject("token");
-    const tickers = inject("tickers");
+    const tickers = inject("tickers") as Ref;
     const ticker = tickers.value.find(
       (ticker) => transaction.value.coin == ticker.id
     );
