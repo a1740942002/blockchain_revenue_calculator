@@ -6,8 +6,8 @@
       class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
     >
       <div class="sm:col-span-1">
-        <label for="coin" class="block text-sm font-medium text-gray-700"
-          >幣別</label
+        <label for="coin" class="block text-sm font-medium text-gray-700">
+          幣別<span class="text-red-500"> *</span></label
         >
         <div class="mt-1">
           <Select />
@@ -17,16 +17,18 @@
         <label
           for="boughtDatetime"
           class="block text-sm font-medium text-gray-700"
-          >購入日期</label
+          >購入日期<span class="text-red-500"> *</span></label
         >
-        <input v-model="boughtDatetime" type="datetime-local" />
+        <input required v-model="boughtDatetime" type="datetime-local" />
       </div>
       <div class="sm:col-span-1">
         <label for="amount" class="block text-sm font-medium text-gray-700"
-          >數量</label
+          >數量<span class="text-red-500"> *</span></label
         >
         <div class="mt-1">
           <input
+            placeholder="ex. 0.009028"
+            required
             v-model="amount"
             type="number"
             step="any"
@@ -51,10 +53,12 @@
         <label
           for="boughtPricing"
           class="block text-sm font-medium text-gray-700"
-          >購入價格</label
+          >購入價格<span class="text-red-500"> *</span></label
         >
         <div class="mt-1">
           <input
+            placeholder="ex. 54195.4891"
+            required
             v-model="boughtPricing"
             type="number"
             step="any"
@@ -76,10 +80,12 @@
       </div>
       <div class="sm:col-span-1">
         <label for="cost" class="block text-sm font-medium text-gray-700"
-          >成本 (USD)</label
+          >成本 (USD)<span class="text-red-500"> *</span></label
         >
         <div class="mt-1">
           <input
+            placeholder="ex. 500"
+            required
             v-model="cost"
             type="number"
             step="any"

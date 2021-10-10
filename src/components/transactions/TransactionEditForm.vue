@@ -7,7 +7,7 @@
     >
       <div class="sm:col-span-1">
         <label for="coin" class="block text-sm font-medium text-gray-700"
-          >幣別</label
+          >幣別<span class="text-red-500"> *</span></label
         >
         <div class="mt-1">
           <Select />
@@ -17,13 +17,13 @@
         <label
           for="boughtDatetime"
           class="block text-sm font-medium text-gray-700"
-          >購入日期</label
+          >購入日期<span class="text-red-500"> *</span></label
         >
-        <input v-model="boughtDatetime" type="datetime-local" />
+        <input required v-model="boughtDatetime" type="datetime-local" />
       </div>
       <div class="sm:col-span-1">
         <label for="amount" class="block text-sm font-medium text-gray-700"
-          >數量</label
+          >數量<span class="text-red-500"> *</span></label
         >
         <div class="mt-1">
           <input
@@ -31,6 +31,7 @@
             type="number"
             step="any"
             name="amount"
+            required
             id="amount"
             autocomplete="organization"
             class="
@@ -51,10 +52,11 @@
         <label
           for="boughtPricing"
           class="block text-sm font-medium text-gray-700"
-          >購入價格</label
+          >購入價格<span class="text-red-500"> *</span></label
         >
         <div class="mt-1">
           <input
+            required
             v-model="boughtPricing"
             type="number"
             step="any"
@@ -76,10 +78,11 @@
       </div>
       <div class="sm:col-span-1">
         <label for="cost" class="block text-sm font-medium text-gray-700"
-          >成本 (USD)</label
+          >成本 (USD)<span class="text-red-500"> *</span></label
         >
         <div class="mt-1">
           <input
+            required
             v-model="cost"
             type="number"
             step="any"
