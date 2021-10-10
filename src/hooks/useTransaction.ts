@@ -1,4 +1,3 @@
-import { containsProp } from '@vueuse/core';
 import { ref, Ref } from 'vue';
 import { useApi } from './useApi';
 
@@ -21,9 +20,9 @@ export function useTransaction() {
     }
   };
 
-  const fetchTransactions = async () => {
+  const fetchTransactions = async (id) => {
     try {
-      const res = await api.get('/transactions');
+      const res = await api.get(`/transactions?belong_to.id=${id}&_sort=boughtDatetime:DESC`);
       transactions.value = res.data;
       return res;
     } catch (error) {

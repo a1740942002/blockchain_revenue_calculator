@@ -6,17 +6,30 @@
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
       {{ newTransaction.amount }}
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+    <td
+      :class="
+        newTransaction.dayChanging > 0 ? 'text-green-500' : 'text-red-500'
+      "
+      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+    >
       {{ newTransaction.pricing }}
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      {{ newTransaction.dayChanging }}
+    <td
+      :class="
+        newTransaction.dayChanging > 0 ? 'text-green-500' : 'text-red-500'
+      "
+      class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+    >
+      {{ newTransaction.dayChanging }}%
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
       {{ newTransaction.boughtPricing }}
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      {{ newTransaction.gainLoss }}
+    <td
+      :class="newTransaction.gainLoss > 0 ? 'text-green-500' : 'text-red-500'"
+      class="px-6 py-4 whitespace-nowrap text-sm"
+    >
+      {{ newTransaction.gainLoss }}%
     </td>
     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
       {{ newTransaction.cost }}
@@ -53,7 +66,7 @@ export default defineComponent({
     const ticker = tickers.value.find(
       (ticker) => transaction.value.coin == ticker.id
     );
-    const pricing = ref(ticker.price);
+    const pricing = ref(_.round(ticker?.price, 2));
     const dayChanging = ref(_.round(ticker["1d"].price_change_pct * 100, 2));
     const handleDelete = async () => {
       await deleteTransaction(token, newTransaction.value.id);
@@ -75,6 +88,7 @@ export default defineComponent({
       pricing,
       gainLoss,
       dayChanging,
+      boughtPricing: _.round(transaction.value.boughtPricing, 2),
     };
 
     return {

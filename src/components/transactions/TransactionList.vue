@@ -63,7 +63,7 @@
                     tracking-wider
                   "
                 >
-                  當日變動(%)
+                  當日變動
                 </th>
                 <th
                   scope="col"
@@ -91,7 +91,7 @@
                     tracking-wider
                   "
                 >
-                  利潤/損失(%)
+                  利潤/損失
                 </th>
                 <th
                   scope="col"

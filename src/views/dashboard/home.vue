@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { defineComponent, ref, provide } from "vue";
+import { defineComponent, ref, provide, inject } from "vue";
 import _ from "lodash/core";
 import { useTransaction } from "../../hooks/useTransaction";
 
@@ -33,8 +33,9 @@ export default defineComponent({
     provide("deleteTransaction", deleteTransaction);
     provide("isShowTranscationModal", isShowTranscationModal);
     provide("tickers", tickers);
+    const user = inject("user");
 
-    fetchTransactions();
+    fetchTransactions(user.value.id);
     fetchCoinData();
 
     return {

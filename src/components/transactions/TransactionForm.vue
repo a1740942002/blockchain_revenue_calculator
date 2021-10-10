@@ -136,6 +136,7 @@ import { useTransaction } from "../../hooks/useTransaction";
 export default defineComponent({
   setup() {
     const token = inject("token");
+    const user = inject("user");
     const addTransaction = inject("addTransaction") as Function;
     const { cost, coin, boughtDatetime, amount, boughtPricing } =
       useTransaction();
@@ -147,7 +148,7 @@ export default defineComponent({
         name: "BTC",
       },
       {
-        name: "ETC",
+        name: "ETH",
       },
     ]);
     provide("coin", coin);
@@ -160,6 +161,7 @@ export default defineComponent({
         boughtDatetime: boughtDatetime.value,
         amount: amount.value,
         boughtPricing: boughtPricing.value,
+        belong_to: user.value.id,
       };
       await addTransaction(token, transactionData);
       coin.value = "";
