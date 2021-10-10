@@ -19,7 +19,7 @@ export default {
     const isShow = computed(() => {
       if (
         route.name == "Login" ||
-        route.name == "Register" ||
+        route.name == "SignUp" ||
         route.name == "Dashboard" ||
         route.name == "DashboardHome"
       )

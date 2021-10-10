@@ -162,13 +162,12 @@
         </button>
         <div class="flex-1 px-4 flex justify-end">
           <div class="ml-4 flex items-center md:ml-6">
-            <h3 class="text-gray-500">{{ user.email }}</h3>
-
             <!-- Profile dropdown -->
             <Menu as="div" class="ml-3 relative">
               <div>
                 <MenuButton
                   class="
+                    px-2
                     max-w-xs
                     bg-white
                     flex
@@ -180,6 +179,7 @@
                   "
                 >
                   <span class="sr-only">Open user menu</span>
+                  <h3 class="text-gray-500 mr-2">{{ user.email }}</h3>
 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

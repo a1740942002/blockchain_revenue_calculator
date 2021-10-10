@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/home.vue';
 import Login from '../views/login.vue';
-import Register from '../views/Register.vue';
+import SignUp from '../views/signup.vue';
 import Dashboard from '../views/dashboard/index.vue';
 import DashboardHome from '../views/dashboard/home.vue';
 import NProgress from 'nprogress';
@@ -18,9 +18,9 @@ const routes = [
     component: Login,
   },
   {
-    path: '/register',
-    name: 'Register',
-    component: Register,
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp,
   },
   {
     path: '/dashboard',

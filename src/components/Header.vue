@@ -51,7 +51,7 @@
             >登入</router-link
           >
           <router-link
-            :to="{ name: 'Register' }"
+            :to="{ name: 'SignUp' }"
             class="
               inline-block
               bg-white

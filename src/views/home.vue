@@ -34,7 +34,7 @@
         </div>
         <div class="ml-3 inline-flex">
           <router-link
-            :to="{ name: 'Register' }"
+            :to="{ name: 'SignUp' }"
             class="
               inline-flex
               items-center
