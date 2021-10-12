@@ -1,4 +1,4 @@
-import { ref, Ref } from 'vue';
+import { ref } from 'vue';
 import { useApi } from './useApi';
 
 export function useTransaction(token?) {

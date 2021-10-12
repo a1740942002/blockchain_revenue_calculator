@@ -138,16 +138,17 @@
         </h1>
         <p class="mt-8 text-xl text-gray-500 leading-8">
           製作這個專案的原因，是因為我平常用來買加密貨幣的平台「<a
-            class="text-indigo-500 line-through hover:text-indigo-600"
+            class="text-indigo-500 underline hover:text-indigo-600"
             href="https://www.binance.com/"
             target="_blank"
             >幣安</a
-          >」，竟然連我用信用卡買幣的歷史記錄都沒有，所以讓我很難計算我當初每一筆交易的獲利是多少。
+          >」，沒有我用信用卡買幣的歷史記錄，所以讓我很難計算我當初每一筆交易的獲利是多少。
         </p>
         <img class="mt-8 shadow-md" src="../assets/homepage_hero.png" alt="" />
         <p class="mt-8 text-xl text-gray-500 leading-8">
-          於是，就萌生了自己做一個簡單的記錄 Web
-          App，來讓我大概瞭解一下我在區塊鏈這邊投資的狀況。
+          於是，就萌生了自己做一個簡單的記錄 Web App ( 目前僅支援 BTC 與
+          ETH，因為我只有買這兩個 )
+          ，來讓我大概瞭解一下我在區塊鏈這邊投資的狀況。
         </p>
       </div>
     </div>

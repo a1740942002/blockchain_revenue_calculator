@@ -70,8 +70,8 @@
             <div class="flex-shrink-0 flex items-center px-4">
               <img
                 class="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
-                alt="Workflow"
+                src="../../assets/logo.png"
+                alt="Bitcord"
               />
             </div>
             <div class="mt-5 flex-1 h-0 overflow-y-auto">
@@ -112,8 +112,8 @@
           <div class="flex items-center flex-shrink-0 px-4">
             <router-link :to="{ name: 'Home' }">
               <img
-                class="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/workflow-logo-indigo-300-mark-white-text.svg"
+                class="h-14 w-auto"
+                src="../../assets/logo_long.png"
                 alt="Workflow"
               />
             </router-link>
