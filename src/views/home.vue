@@ -118,6 +118,23 @@
             >
               一鍵控管資產，邁向財富自由
             </p>
+            <a
+              href="https://nomics.com/"
+              target="_blank"
+              class="
+                block
+                underline
+                max-w-md
+                mx-auto
+                text-base text-gray-400
+                sm:text-xs
+                md:mt-2
+                md:text-sm
+                md:max-w-3xl
+              "
+            >
+              Crypto Market Cap & Pricing Data Provided By Nomics.
+            </a>
           </div>
         </div>
       </div>
