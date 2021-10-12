@@ -299,6 +299,7 @@ export default defineComponent({
   setup() {
     const token = inject("token") as Ref;
     const {
+      error,
       isEdit,
       isLoadingTransactions,
       isShowTransactionModal,
@@ -320,9 +321,10 @@ export default defineComponent({
     provide("addTransaction", addTransaction);
     provide("deleteTransaction", deleteTransaction);
     provide("tickers", tickers);
+    provide("error", error);
     const user = inject("user") as Ref;
     fetchTransactions(user.value.id);
-    fetchCoinData();
+    fetchCoinData().catch((err) => (error.value = { message: err.message }));
     const sidebarOpen = ref(false);
     const route = useRoute();
     const router = useRouter();

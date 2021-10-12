@@ -9,6 +9,7 @@ export function useTransaction(token?) {
   const editTransaction = ref({});
   const isShowTransactionModal = ref(false);
   const isLoadingTransactions = ref(false);
+  const error = ref({});
 
   const fetchCoinData = async () => {
     try {
@@ -72,5 +73,6 @@ export function useTransaction(token?) {
     addTransaction,
     updateTransaction,
     deleteTransaction,
+    error,
   };
 }

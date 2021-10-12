@@ -145,6 +145,14 @@
         >
           目前沒有交易記錄
         </h4>
+        <warning v-if="error?.message" class="mt-8">
+          <template v-slot:title>
+            Sorry! There is a {{ error.message }}!
+          </template>
+          <template v-slot:content>
+            抱歉，伺服器出了點狀況，因此無法獲得幣的即時資訊。</template
+          >
+        </warning>
       </div>
     </div>
   </div>
@@ -155,9 +163,11 @@ import { inject } from "vue";
 export default {
   setup() {
     const transactions = inject("transactions");
+    const error = inject("error");
 
     return {
       transactions,
+      error,
     };
   },
 };
