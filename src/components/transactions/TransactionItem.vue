@@ -91,18 +91,18 @@ export default defineComponent({
       _.round((pricing.value / transaction.value.boughtPricing - 1) * 100, 2)
     );
 
-    const date = new Date(
+    let datetimestring = new Date(
       transaction.value.boughtDatetime
-    ).toLocaleDateString();
-    const time = new Date(transaction.value.boughtDatetime).toLocaleTimeString(
-      [],
-      { hour: "2-digit", minute: "2-digit" }
-    );
+    ).toLocaleString("zh-tw", {
+      timeZone: "UTC",
+    });
+    datetimestring = datetimestring.substring(0, datetimestring.length - 3);
+    const boughtDatetime = ref(datetimestring);
 
     const newTransaction = computed(() => {
       return {
         ...transaction.value,
-        boughtDatetime: date + " " + time,
+        boughtDatetime: boughtDatetime.value,
         pricing: pricing.value,
         gainLoss: gainLoss.value,
         dayChanging: dayChanging.value,
